@@ -1,9 +1,11 @@
 // -----------------------Imports-----------------------
 const {
-    CreateNewUser
+    CreateNewUser,
+    LoginUser
 } = require("./User");
 
 // -----------------------Exports-----------------------
 module.exports = {
     CreateNewUser,
+    LoginUser
 }

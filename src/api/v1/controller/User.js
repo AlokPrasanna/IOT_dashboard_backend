@@ -80,6 +80,57 @@ const CreateNewUser = async(req , res) => {
     }
 }
 
+// -----------------------Function to login user-----------------------
+const LoginUser = async (req, res) => {
+    // Request body
+    const { emailAddress , password } = req.body;
+  
+    try {
+      // Check if email address already available
+      const User = await UserModel.findOne({ emailAddress }).exec();
+      if (!User) {
+        return res.status(401).json({
+          status: false,
+          error: { message: "Wrong Email Address!" },
+        });
+      }
+  
+      // Check if password matches
+      const PassMatch = await bcrypt.compare(password, User.password);
+      if (!PassMatch) {
+        return res.status(401).json({
+          status: false,
+          error: { message: "Wrong password!" },
+        });
+      }
+  
+      // set userTpe in request body
+      //req.body.userType = User.userType;
+      //req.body.id = User._id;
+  
+      // Generate tokens
+      //const { accessToken } = GenerateTokens(User);
+  
+      return res.status(200).json({
+        status: true,
+        //accessToken,
+        //id:User._id,
+        //name:User.fullName,
+        //userType:User.userType,
+        success: { message: "Successfully logged in the user!" },
+      });
+    } catch (err) {
+      console.log(err);
+      return res.status(500).json({
+        status: false,
+        error: { message: "Failed to login the user due to server error!" },
+      });
+    }
+  };
+  
+
 module.exports = {
     CreateNewUser,
+    LoginUser,
 }
+
