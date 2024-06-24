@@ -4,7 +4,8 @@ const express = require("express");
 // -----------------------Custom libraries and modules-----------------------
 const { 
     CreateNewUser,
-    LoginUser
+    LoginUser,
+    GetAllUsers
 } = require("../controller");
 
 // -----------Initialize the router-----------
@@ -16,5 +17,8 @@ router.post("/create-new-user", CreateNewUser);
 
 // Login User
 router.post("/login" , LoginUser);
+
+// Get All users
+router.get("/all" , GetAllUsers);
 
 module.exports = router;

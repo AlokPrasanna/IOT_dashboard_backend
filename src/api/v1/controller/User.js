@@ -127,10 +127,36 @@ const LoginUser = async (req, res) => {
       });
     }
   };
+
+  // -----------------------Function to get all users-----------------------
+const GetAllUsers = async (req, res) => {
+    try {
+      const users = await UserModel.aggregate([
+        {
+          $project: {
+            password: 0 // Exclude password field from the results
+          }
+        }
+      ]).exec();
   
+      return res.status(200).json({
+        status: true,
+        users: users,
+        success: { message: "Successfully fetched all users!" },
+      });
+    } catch (err) {
+      console.log(err);
+      return res.status(500).json({
+        status: false,
+        error: { message: "Failed to fetch all users due to server error!" },
+      });
+    }
+  };
+
 
 module.exports = {
     CreateNewUser,
     LoginUser,
+    GetAllUsers
 }
 

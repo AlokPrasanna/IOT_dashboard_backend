@@ -1,11 +1,13 @@
 // -----------------------Imports-----------------------
 const {
     CreateNewUser,
-    LoginUser
+    LoginUser,
+    GetAllUsers
 } = require("./User");
 
 // -----------------------Exports-----------------------
 module.exports = {
     CreateNewUser,
-    LoginUser
+    LoginUser,
+    GetAllUsers
 }
