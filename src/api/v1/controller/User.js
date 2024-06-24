@@ -10,6 +10,13 @@ const CreateNewUser = async(req , res) => {
     const {
         fullName,
         emailAddress,
+        imageUrl,
+        contact,
+        nic,
+        gender,
+        birthday,
+        userType,
+        sendEmailStatus,
         password,
         dateCreated,
         timeCreated,
@@ -37,6 +44,13 @@ const CreateNewUser = async(req , res) => {
     const NewUser = new UserModel({
         fullName,
         emailAddress,
+        imageUrl,
+        contact,
+        nic,
+        gender,
+        birthday,
+        userType,
+        sendEmailStatus,
         password: EncryptedPassword,
         dateCreated,
         timeCreated,
@@ -51,7 +65,7 @@ const CreateNewUser = async(req , res) => {
         status: true,
         user: SavedUser,
         success: {
-          message: "Successfully registered a new user!",
+          message: "Successfully created a new user!",
         },
     });
 
@@ -60,7 +74,7 @@ const CreateNewUser = async(req , res) => {
         return res.status(500).json({
             status: false,
             error: {
-              message: "Failed to register a new user due to server error!",
+              message: "Failed to create a new user due to server error!",
             },
         });
     }
