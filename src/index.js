@@ -5,17 +5,30 @@ require("dotenv/config");
 // -------------------- Custom libraries and modules --------------------
 const config = require("./config");
 const {ConnectDatabase} = require("./api/v1/libraries");
+const {UserRoutes} = require("./api/v1/routes");
 
 // -------------------- Third-party components and modules --------------------
 const app = express();
 const PORT  = config.PORT || 3308;
+
+// -----------Accept json-----------
+app.use(express.json());
 
 // -------------------- Base Url --------------------
 app.get("/" , (req,res) => {
     res.status(200).json({ status: true , message: `Welcome to the Server!` });
 });
 
+// -----------User route-----------
+app.use("/api/users", UserRoutes);
+
+// -------------------- Error route --------------------
+app.use((req , res) => {
+    res.status(404).json({ status:false , message: `Not Found!`});
+});
+
 // -------------------- Start Server --------------------
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
+    ConnectDatabase().then(() => console.log("Connected to Database!")).catch((err) => console.log(err));
 });
