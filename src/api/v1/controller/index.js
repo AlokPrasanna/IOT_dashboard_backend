@@ -2,12 +2,16 @@
 const {
     CreateNewUser,
     LoginUser,
-    GetAllUsers
+    GetAllUsers,
+    GetUserById,
+    UpdateUser
 } = require("./User");
 
 // -----------------------Exports-----------------------
 module.exports = {
     CreateNewUser,
     LoginUser,
-    GetAllUsers
+    GetAllUsers,
+    GetUserById,
+    UpdateUser
 }

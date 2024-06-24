@@ -5,7 +5,9 @@ const express = require("express");
 const { 
     CreateNewUser,
     LoginUser,
-    GetAllUsers
+    GetAllUsers,
+    GetUserById,
+    UpdateUser
 } = require("../controller");
 
 // -----------Initialize the router-----------
@@ -20,5 +22,11 @@ router.post("/login" , LoginUser);
 
 // Get All users
 router.get("/all" , GetAllUsers);
+
+// Get user by Id
+router.get("/one/:userId" , GetUserById);
+
+// Update User
+router.put("/update/:userId" , UpdateUser);
 
 module.exports = router;
