@@ -128,7 +128,7 @@ const LoginUser = async (req, res) => {
     }
   };
 
-  // -----------------------Function to get all users-----------------------
+// -----------------------Function to get all users-----------------------
 const GetAllUsers = async (req, res) => {
     try {
       const users = await UserModel.aggregate([
@@ -153,7 +153,7 @@ const GetAllUsers = async (req, res) => {
     }
   };
 
-  // -----------------------Function to get user by id-----------------------
+// -----------------------Function to get user by id-----------------------
 const GetUserById = async (req, res) => {
     const { userId } = req.params;
   
@@ -181,7 +181,7 @@ const GetUserById = async (req, res) => {
     }
   };
 
-  // -----------------------Function to update user by id-----------------------
+// -----------------------Function to update user by id-----------------------
 const UpdateUser = async (req, res) => {
     // Request params
     const { userId } = req.params;
@@ -284,12 +284,54 @@ const UpdateUser = async (req, res) => {
     }
   };
 
+// -------------------- Function to Delete user --------------------
+const DeleteUser = async(req , res) => {
+    // Request params
+    const { userId } = req.params;
+  
+    try {
+  
+      // Check UserId already exsits or not
+      const User = await UserModel.findOne({_id:userId}).exec();
+  
+      if(!User){
+          return res.status(404).json({
+              status: false,
+              error: {
+                  message: "No user found for the provided user id!"
+              }
+          });
+      }
+      // Delete User
+      const DeleteUser =  await User.deleteOne();
+  
+      if(DeleteUser){
+          return res.status(200).json({
+              status: true,
+              success: {
+                  message: "User delete successfully!"
+              }
+          });
+      }
+      
+  } catch (error) {
+      console.log(error);
+      return res.status(500).json({
+          status:false,
+          error:{
+            message: "Failed to delete user due to server error!"
+          }  
+      });
+    }
+  };  
+
 
 module.exports = {
     CreateNewUser,
     LoginUser,
     GetAllUsers,
     GetUserById,
-    UpdateUser
+    UpdateUser,
+    DeleteUser
 }
 

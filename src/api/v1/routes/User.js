@@ -7,7 +7,8 @@ const {
     LoginUser,
     GetAllUsers,
     GetUserById,
-    UpdateUser
+    UpdateUser,
+    DeleteUser
 } = require("../controller");
 
 // -----------Initialize the router-----------
@@ -26,7 +27,10 @@ router.get("/all" , GetAllUsers);
 // Get user by Id
 router.get("/one/:userId" , GetUserById);
 
-// Update User
+// Update user
 router.put("/update/:userId" , UpdateUser);
+
+// Delete user
+router.delete("/delete/:userId" , DeleteUser);
 
 module.exports = router;
