@@ -1,5 +1,6 @@
 // -------------------- Third-party components and modules --------------------
 const express = require("express");
+const cors = require("cors");
 require("dotenv/config");
 
 // -------------------- Custom libraries and modules --------------------
@@ -14,7 +15,10 @@ const PORT  = config.PORT || 3308;
 // -----------Accept json-----------
 app.use(express.json());
 
-// -------------------- Base Url --------------------
+// -------------------- Allow CORS --------------------
+app.use(cors());
+
+// -------------------- Base route --------------------
 app.get("/" , (req,res) => {
     res.status(200).json({ status: true , message: `Welcome to the Server!` });
 });
