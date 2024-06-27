@@ -10,6 +10,7 @@ const CreateNewUser = async(req , res) => {
     const {
         fullName,
         emailAddress,
+        address,
         imageUrl,
         contact,
         nic,
@@ -44,6 +45,7 @@ const CreateNewUser = async(req , res) => {
     const NewUser = new UserModel({
         fullName,
         emailAddress,
+        address,
         imageUrl,
         contact,
         nic,
