@@ -108,7 +108,7 @@ const LoginUser = async (req, res) => {
   
       // set userTpe in request body
       //req.body.userType = User.userType;
-      //req.body.id = User._id;
+      req.body.id = User._id;
   
       // Generate tokens
       //const { accessToken } = GenerateTokens(User);
@@ -116,9 +116,9 @@ const LoginUser = async (req, res) => {
       return res.status(200).json({
         status: true,
         //accessToken,
-        //id:User._id,
+        id:User._id,
         //name:User.fullName,
-        //userType:User.userType,
+        userType:User.userType,
         success: { message: "Successfully logged in the user!" },
       });
     } catch (err) {
