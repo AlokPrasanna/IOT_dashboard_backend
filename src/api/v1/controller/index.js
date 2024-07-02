@@ -12,6 +12,7 @@ const {
     CreateNewDevice,
     GetAllDevices,
     UpdateDevice,
+    DeleteDevice,
 } = require("./Device");
 
 // -----------------------Exports-----------------------
@@ -25,4 +26,5 @@ module.exports = {
     CreateNewDevice,
     GetAllDevices,
     UpdateDevice,
+    DeleteDevice,
 }

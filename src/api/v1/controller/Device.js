@@ -137,11 +137,53 @@ const UpdateDevice = async (req, res) => {
         success: { message: "Failed to update the device due to server error!" },
       });
     }
-  };
+};
+
+// -------------------- Function to Delete device --------------------
+const DeleteDevice = async(req , res) => {
+  // Request params
+  const { deviceId } = req.params;
+
+  try {
+
+    // Check UserId already exsits or not
+    const Device = await DeviceModel.findOne({_id:deviceId}).exec();
+
+    if(!Device){
+        return res.status(404).json({
+            status: false,
+            error: {
+                message: "No device found for the provided device id!"
+            }
+        });
+    }
+    // Delete User
+    const DeleteDevice =  await Device.deleteOne();
+
+    if(DeleteDevice){
+        return res.status(200).json({
+            status: true,
+            success: {
+                message: "Device delete successfully!"
+            }
+        });
+    }
+    
+} catch (error) {
+    console.log(error);
+    return res.status(500).json({
+        status:false,
+        error:{
+          message: "Failed to delete device due to server error!"
+        }  
+    });
+  }
+};  
 
 
 module.exports = { 
     CreateNewDevice,
     GetAllDevices,
-    UpdateDevice, 
+    UpdateDevice,
+    DeleteDevice, 
 };

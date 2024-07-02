@@ -5,7 +5,8 @@ const express = require("express");
 const {
     CreateNewDevice,
     GetAllDevices,
-    UpdateDevice
+    UpdateDevice,
+    DeleteDevice
 } = require("../controller");
 
 // -----------Initialize the router-----------
@@ -20,6 +21,9 @@ router.get("/all" , GetAllDevices);
 
 // Update device
 router.put("/update/:deviceId" , UpdateDevice);
+
+// Delete device
+router.delete("/delete/:deviceId" , DeleteDevice);
 
 
 
