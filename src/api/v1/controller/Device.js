@@ -85,8 +85,57 @@ const GetAllDevices = async (req, res) => {
     }
 };
 
+// -----------------------Function to update device-----------------------
+const UpdateDevice = async (req, res) => {
+    // Request params
+    const { deviceId } = req.params;
+
+    try {
+      // Check device already available
+      const Device = await DeviceModel.findOne({ _id: deviceId }).exec();
+      if (!Device) {
+        return res.status(404).json({
+          status: false,
+          error: { message: "No device available for the provided device id!" },
+        });
+      }
+  
+      // Properties validation
+      if (!dateUpdated || !timeUpdated) {
+        return res.status(400).json({
+          status: false,
+          error: {
+            message: "Not provided updated date or time information!",
+          },
+        });
+      }  
+      // Update device
+      const UpdatedDevice = await DeviceModel.findOneAndUpdate(
+        { _id: userId },
+        {
+          new: true,
+        }
+      );
+  
+      return res.status(200).json({
+        status: true,
+        device: UpdatedDevice,
+        success: {
+          message: "Successfully updated device details!",
+        },
+      });
+    } catch (err) {
+      console.log(err);
+      return res.status(500).json({
+        status: false,
+        success: { message: "Failed to update the device due to server error!" },
+      });
+    }
+  };
+
 
 module.exports = { 
     CreateNewDevice,
-    GetAllDevices, 
+    GetAllDevices,
+    UpdateDevice, 
 };

@@ -4,7 +4,8 @@ const express = require("express");
 // -----------------------Custom libraries and modules-----------------------
 const {
     CreateNewDevice,
-    GetAllDevices
+    GetAllDevices,
+    UpdateDevice
 } = require("../controller");
 
 // -----------Initialize the router-----------
@@ -16,6 +17,10 @@ router.post("/create-new-device", CreateNewDevice);
 
 // Get All devices
 router.get("/all" , GetAllDevices);
+
+// Update device
+router.put("/update/:deviceId" , UpdateDevice);
+
 
 
 module.exports = router;
