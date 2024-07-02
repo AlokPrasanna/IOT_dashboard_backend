@@ -85,6 +85,34 @@ const GetAllDevices = async (req, res) => {
     }
 };
 
+// -----------------------Function to get device by id-----------------------
+const GetDeviceById = async (req, res) => {
+  const { deviceId } = req.params;
+
+  try {
+    // Check device already available
+    const Device = await DeviceModel.findOne({ _id: deviceId }).exec();
+    if (!Device) {
+      return res.status(404).json({
+        status: false,
+        success: { message: "No device available for the provided device id!" },
+      });
+    }
+
+    return res.status(200).json({
+      status: true,
+      device: Device,
+      success: { message: "Successfully fetched the device!" },
+    });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({
+      status: false,
+      error: { message: "Failed to fetch the device due to server error!" },
+    });
+  }
+};
+
 // -----------------------Function to update device-----------------------
 const UpdateDevice = async (req, res) => {
     // Request params
@@ -185,5 +213,6 @@ module.exports = {
     CreateNewDevice,
     GetAllDevices,
     UpdateDevice,
-    DeleteDevice, 
+    DeleteDevice,
+    GetDeviceById, 
 };

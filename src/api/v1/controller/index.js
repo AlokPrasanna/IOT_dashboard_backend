@@ -13,6 +13,7 @@ const {
     GetAllDevices,
     UpdateDevice,
     DeleteDevice,
+    GetDeviceById,
 } = require("./Device");
 
 // -----------------------Exports-----------------------
@@ -27,4 +28,5 @@ module.exports = {
     GetAllDevices,
     UpdateDevice,
     DeleteDevice,
+    GetDeviceById,
 }

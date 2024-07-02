@@ -6,7 +6,8 @@ const {
     CreateNewDevice,
     GetAllDevices,
     UpdateDevice,
-    DeleteDevice
+    DeleteDevice,
+    GetDeviceById
 } = require("../controller");
 
 // -----------Initialize the router-----------
@@ -18,6 +19,9 @@ router.post("/create-new-device", CreateNewDevice);
 
 // Get All devices
 router.get("/all" , GetAllDevices);
+
+// Get device by id
+router.get("/one/:deviceId" , GetDeviceById);
 
 // Update device
 router.put("/update/:deviceId" , UpdateDevice);
