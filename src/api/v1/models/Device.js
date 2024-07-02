@@ -15,6 +15,10 @@ const DeviceSchema = new mongoose.Schema({
         type:String,
         require:true,
     },
+    owner: {
+        type:String,
+        require:true,
+    },
     onState: {
         type:Boolean,
         require:true,
