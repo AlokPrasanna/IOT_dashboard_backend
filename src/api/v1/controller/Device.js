@@ -23,7 +23,7 @@ const CreateNewDevice = async( req , res ) => {
         const Device = await DeviceModel.findOne({name , group});
 
         if(Device){
-            return res.staus(400).json({
+            return res.status(400).json({
                 status: false,
                 error:{
                     message: "Device with the same name already exists in this group."
