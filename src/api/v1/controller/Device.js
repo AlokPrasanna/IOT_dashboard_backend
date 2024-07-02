@@ -66,7 +66,27 @@ const CreateNewDevice = async( req , res ) => {
     }
 }
 
+// -----------------------Function to get all devices-----------------------
+const GetAllDevices = async (req, res) => {
+    try {
+      const devices = await DeviceModel.find().exec();
+  
+      return res.status(200).json({
+        status: true,
+        devices: devices,
+        success: { message: "Successfully fetched all devices!" },
+      });
+    } catch (err) {
+      console.log(err);
+      return res.status(500).json({
+        status: false,
+        error: { message: "Failed to fetch all devices due to server error!" },
+      });
+    }
+};
+
 
 module.exports = { 
-    CreateNewDevice 
+    CreateNewDevice,
+    GetAllDevices, 
 };
