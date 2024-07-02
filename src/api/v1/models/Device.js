@@ -11,6 +11,9 @@ const DeviceSchema = new mongoose.Schema({
         type:String,
         require:true,
     },
+    imageUrl: {
+        type:String,
+    },
     group: {
         type:String,
         require:true,
