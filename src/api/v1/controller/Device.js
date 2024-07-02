@@ -90,6 +90,9 @@ const UpdateDevice = async (req, res) => {
     // Request params
     const { deviceId } = req.params;
 
+    // Request body
+    const { dateUpdated, timeUpdated } = req.body;
+
     try {
       // Check device already available
       const Device = await DeviceModel.findOne({ _id: deviceId }).exec();
@@ -111,7 +114,10 @@ const UpdateDevice = async (req, res) => {
       }  
       // Update device
       const UpdatedDevice = await DeviceModel.findOneAndUpdate(
-        { _id: userId },
+        { _id: deviceId },
+        {
+            $set:req.body
+        },
         {
           new: true,
         }
