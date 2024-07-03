@@ -29,7 +29,11 @@ const corsOptions = {
     allowedHeaders: ['Content-Type', 'Authorization'],
     optionsSuccessStatus: 200 
 };
+
 app.use(cors(corsOptions));
+
+// Handle OPTIONS requests globally
+app.options('*', cors(corsOptions));
 
 // -------------------- Base route --------------------
 app.get("/" , (req,res) => {
