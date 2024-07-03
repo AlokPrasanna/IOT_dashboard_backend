@@ -1,5 +1,5 @@
 // ----------------------- Third-party libraries and modules -----------------------
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 
 // ----------------------- Custom libraries and modules -----------------------
 const { UserModel } = require("../models");
