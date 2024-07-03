@@ -16,7 +16,18 @@ const PORT  = config.PORT || 3308;
 app.use(express.json());
 
 // -------------------- Allow CORS --------------------
-app.use(cors({ origin: '*' }));
+const allowedOrigins = ['http://localhost:5173', 'https://dev--xpac-dashboard.netlify.app'];
+const corsOptions = {
+    origin: (origin, callback) => {
+      if (allowedOrigins.includes(origin) || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    optionsSuccessStatus: 200 
+};
+app.use(cors(corsOptions));
 
 // -------------------- Base route --------------------
 app.get("/" , (req,res) => {
