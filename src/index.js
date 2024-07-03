@@ -12,13 +12,11 @@ const { UserRoutes , DeviceRoutes } = require("./api/v1/routes");
 const app = express();
 const PORT  = config.PORT || 3308;
 
-// -------------------- Allow CORS --------------------
-app.use(cors({
-    origin:'*'
-}));
-
 // -----------Accept json-----------
 app.use(express.json());
+
+// -------------------- Allow CORS --------------------
+app.use(cors());
 
 // -------------------- Base route --------------------
 app.get("/" , (req,res) => {
