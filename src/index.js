@@ -12,9 +12,6 @@ const { UserRoutes , DeviceRoutes } = require("./api/v1/routes");
 const app = express();
 const PORT  = config.PORT || 3308;
 
-// -----------Accept json-----------
-app.use(express.json());
-
 // -------------------- Allow CORS --------------------
 const allowedOrigins = ['http://localhost:5173', 'https://dev--xpac-dashboard.netlify.app'];
 const corsOptions = {
@@ -34,6 +31,9 @@ app.use(cors(corsOptions));
 
 // Handle OPTIONS requests globally
 app.options('*', cors(corsOptions));
+
+// -----------Accept json-----------
+app.use(express.json());
 
 // -------------------- Base route --------------------
 app.get("/" , (req,res) => {
