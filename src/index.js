@@ -13,13 +13,9 @@ const app = express();
 const PORT  = config.PORT || 3308;
 
 // -------------------- Allow CORS --------------------
-const corsOptions ={
-    origin:'https://dev--xpac-dashboard.netlify.app', 
-    credentials:true,         
-    optionSuccessStatus:200
-}
-
-app.use(cors(corsOptions));
+app.use(cors({
+    origin:'https://dev--xpac-dashboard.netlify.app'
+}));
 
 // -----------Accept json-----------
 app.use(express.json());
