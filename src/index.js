@@ -14,7 +14,7 @@ const PORT  = config.PORT || 3308;
 
 // -------------------- Allow CORS --------------------
 app.use(cors({
-    origin:'https://dev--xpac-dashboard.netlify.app'
+    origin:'*'
 }));
 
 // -----------Accept json-----------
