@@ -16,7 +16,7 @@ const PORT  = config.PORT || 3308;
 app.use(express.json());
 
 // -------------------- Allow CORS --------------------
-app.use(cors());
+app.use(cors({ origin: '*' }));
 
 // -------------------- Base route --------------------
 app.get("/" , (req,res) => {
